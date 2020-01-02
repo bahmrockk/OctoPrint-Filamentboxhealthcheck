@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_FilamentBoxHealthCheck/templates *
+recursive-include octoprint_FilamentBoxHealthCheck/translations *
+recursive-include octoprint_FilamentBoxHealthCheck/static *
