@@ -2,22 +2,24 @@ $(function() {
 
 	function FilamentBoxHealthCheckViewModel(parameters) {
 		var self=this;
-		self.loginState = parameters[0];
+		
+		self.bme280Humidity = ko.observable();
+		self.bme280Temperature = ko.observable();
 
 		self.onDataUpdaterPluginMessage = function(plugin, data) {
 			if(plugin != "FilamentBoxHealthCheck") {
-				alert(plugin);
 				return;
 			}
 			else {
-				alert("yay: !" + data.temperature)
-				alert($("bme280-temp").text + ", " +$("filmanetBoxHealthCheck").text);
+				
+				self.bme280Temperature(Math.round(data.temperature*100)/100);
+				self.bme280Humidity(Math.round(data.humidity*100)/100);
 			}
 		}
 	}
 	OCTOPRINT_VIEWMODELS.push([
-		constuct: FilamentBoxHealthCheckViewModel,
-		dependencies: [],
-		elements: ["#FilamentBoxHealthCheck"]
+		FilamentBoxHealthCheckViewModel,
+		[],
+		["#navbar_plugin_FilamentBoxHealthCheck"]
 	]);
 });

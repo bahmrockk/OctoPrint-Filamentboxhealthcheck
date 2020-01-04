@@ -19,10 +19,9 @@ class FilamentBoxHealth(octoprint.plugin.StartupPlugin,
         t.start()
 
     def check_resources(self):
-        self._logger.warning("now I'm running ..")
         message = self.pull_bme280() #thanks @ tedder42 for helping me move forward!
-        self._logger.warning("now I'm dead. This log info does not appear: %s", message)
-        self.plugin_manager.send_plugin_message("FilamentBoxHealthCheck", message)
+        self._logger.warning("Data pulled from bme280: %s", message)
+        self._plugin_manager.send_plugin_message(self._identifier, message)
 
     def get_assets(self):
         return dict(
@@ -30,17 +29,13 @@ class FilamentBoxHealth(octoprint.plugin.StartupPlugin,
         )
 
     def pull_bme280(self, bus=1, address=0x76):
-        self._logger.warning("Before SMBus is called")
         bus = smbus2.SMBus(bus)
-        self._logger.warning("After SMBus is called")
- 
-        #as soon as the bme lib is used, everything breaks down. works fine on console with source set to oprint/bin/activate
         try:
             calibration_params=bme280.load_calibration_params(bus, address)
             data = bme280.sample(bus, address, bme280.load_calibration_params(bus, address))
         except:
             e = sys.exc_info()[0]
-            print(e)
+            self_logger.error("%s", e)
 
         message = dict(
                 humidity=data.humidity,
