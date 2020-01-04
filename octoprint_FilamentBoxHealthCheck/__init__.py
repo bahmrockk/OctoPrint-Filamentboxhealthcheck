@@ -15,7 +15,7 @@ class FilamentBoxHealth(octoprint.plugin.StartupPlugin,
  
     def on_after_startup(self):
         self._logger.info("started Filament Box Healthcheck Plugin: ")
-        t = RepeatedTimer(15, self.check_resources, run_first=True)
+        t = RepeatedTimer(60, self.check_resources, run_first=True)
         t.start()
 
     def check_resources(self):
