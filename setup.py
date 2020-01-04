@@ -18,7 +18,7 @@ plugin_version = "0.1.0"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = """Filament Box TeTemperature und Humidity Display via I2C foprr Filament Box Heakthlth"""
+plugin_description = """Temperature und Humidity Display via I2C for Filament Box health"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
 plugin_author = "Georg"
@@ -33,7 +33,7 @@ plugin_url = "https://github.com/bahmrockk/OctoPrint-Filamentboxhealthcheck"
 plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
-plugin_requires = []
+plugin_requires = ["smbus2", "RPi.bme280"]
 
 ### --------------------------------------------------------------------------------------------------------------------
 ### More advanced options that you usually shouldn't have to touch follow after this point
