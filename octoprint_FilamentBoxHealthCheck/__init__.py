@@ -20,7 +20,6 @@ class FilamentBoxHealth(octoprint.plugin.StartupPlugin,
 
     def check_resources(self):
         message = self.pull_bme280() #thanks @ tedder42 for helping me move forward!
-        self._logger.warning("Data pulled from bme280: %s", message)
         self._plugin_manager.send_plugin_message(self._identifier, message)
 
     def get_assets(self):
