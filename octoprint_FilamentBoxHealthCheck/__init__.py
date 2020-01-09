@@ -50,8 +50,5 @@ if __name__ == "__main__":
 
 
 __plugin_pythoncompat__ =">2.7,<4"
-__plugin_name__ = "Filament Box Health Check"
-__plugin_version__ = "1.0.0"
-__plugin_description__ = "Temperature & humidity from the Pi via the I2C interface"
 __plugin_implementation__ = FilamentBoxHealth()
 
